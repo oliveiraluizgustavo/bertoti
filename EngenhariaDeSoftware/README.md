@@ -18,6 +18,10 @@ Negociação de requisitos não funcionais em Tradeoffs significa aceitar que ne
 
 <u><i>**Escalabilidade vs. Simplicidade**
 
+Um sistema altamente escalável costuma exigir arquiteturas distribuídas, mecanismos de cache complexos e bancos de dados fragmentados. Isso garante que ele cresça sem travar, mas torna sua manutenção mais difícil e cara. Já a simplicidade prioriza clareza e facilidade de manutenção, mas pode limitar a capacidade do sistema de suportar um grande volume de usuários ou dados. Assim, quanto mais se busca escalabilidade, mais se sacrifica a simplicidade e vice-versa.
+
 
 <u><i>**Portabilidade vs. Desempenho**
+
+Um software altamente portátil roda em diferentes sistemas operacionais e dispositivos, mas geralmente depende de camadas de abstração que reduzem a eficiência. Por outro lado, quando o desempenho é prioridade, o código é otimizado para um ambiente específico, explorando ao máximo os recursos de hardware, mas perdendo a flexibilidade de ser executado em outros contextos. Nesse embate, quanto mais portabilidade se busca, mais desempenho se abre mão e o contrário também é verdadeiro.
 

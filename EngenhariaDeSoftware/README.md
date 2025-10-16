@@ -27,6 +27,8 @@ Portabilidade e desempenho também costumam gerar um trade-off. Quando buscamos 
 
 ## 4° ATIVIDADE - Classes UML
 
+<img src="/EngenhariaDeSoftware/assets/Diagrama_UML.png">
+
 ## 5° ATIVIDADE - Java
 
 ## 6° ATIVIDADE - Testes automatizados

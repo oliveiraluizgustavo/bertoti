@@ -14,5 +14,5 @@ Negociação de requisitos não funcionais em Tradeoffs significa aceitar que ne
 ### <u><i>Escalabilidade vs. Simplicidade
 
 
-###<u><i>Portabilidade vs. Desempenho
+### <u><i>Portabilidade vs. Desempenho
 

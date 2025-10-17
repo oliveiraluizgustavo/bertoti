@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21.0.4" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.ollama.app.ChatController"
+            style="-fx-background-color: #E0F7FA;">
+    <top>
+        <ToolBar>
+            <Label text="Host:"/>
+            <TextField fx:id="txtHost" prefWidth="300"/>
+            <Separator orientation="VERTICAL"/>
+            <Label text="Modelo:"/>
+            <ComboBox fx:id="cboModel" prefWidth="150"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label fx:id="lblStatus" text="Pronto"/>
+        </ToolBar>
+    </top>
+
+    <center>
+        <VBox spacing="6.0" style="-fx-padding: 12;">
+            <ListView fx:id="listView" VBox.vgrow="ALWAYS" prefHeight="400"/>
+        </VBox>
+    </center>
+
+    <bottom>
+        <HBox spacing="8.0" style="-fx-padding: 10;">
+            <TextField fx:id="txtQuestion" HBox.hgrow="ALWAYS" promptText="Escreva sua pergunta e pressione Enter"/>
+            <Button fx:id="btnSend" text="Enviar" onAction="#onSend"/>
+        </HBox>
+    </bottom>
+</BorderPane>

@@ -31,9 +31,30 @@ Portabilidade e desempenho também costumam gerar um trade-off. Quando buscamos 
 
 ## 5° ATIVIDADE - Java
 
+### Estrutura do projeto
+<img src="/EngenhariaDeSoftware/assets/EstruturaDasClasses.png">
+
+### Classe Hospital
+<img src="/EngenhariaDeSoftware/assets/ClasseHospital.png">
+
+### Classe Paciente
+<img src="/EngenhariaDeSoftware/assets/ClassePaciente.png">
+
+### Classe Medico
+<img src="/EngenhariaDeSoftware/assets/ClasseMedico.png">
+
 ## 6° ATIVIDADE - Testes automatizados
 
+<img src="/EngenhariaDeSoftware/assets/ClasseTeste01.png">
+<img src="/EngenhariaDeSoftware/assets/ClasseTeste02.png">
+<img src="/EngenhariaDeSoftware/assets/ClasseTeste03.png">
+
 ## 7° ATIVIDADE - Java -> SQLite
+
+<img src="/EngenhariaDeSoftware/assets/ClasseDeConexaoComBancoDeDados01.png">
+<img src="/EngenhariaDeSoftware/assets/ClasseDeConexaoComBancoDeDados02.png">
+<img src="/EngenhariaDeSoftware/assets/ClasseDeConexaoComBancoDeDados03.png">
+
 
 ## 8° ATIVIDADE - Usar ollama4j
 

@@ -16,7 +16,7 @@ public class OllamaService {
     private static final String API_URL = "https://openrouter.ai/api/v1/chat/completions";
 
     // Coloque aqui a sua chave da OpenRouter
-    private static final String API_KEY = "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"; // ex: sk-or-123abc...
+    private static final String API_KEY = "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"; // ex: sk-or-123abc...
 
     // Modelo a ser usado — você pode trocar para outro disponível na OpenRouter
     private static final String MODEL = "meta-llama/llama-3-8b-instruct";

@@ -58,3 +58,5 @@ Portabilidade e desempenho também costumam gerar um trade-off. Quando buscamos 
 
 ## 8° ATIVIDADE - Usar ollama4j
 
+<img src="/EngenhariaDeSoftware/assets/Atividade08Ollama.png">
+

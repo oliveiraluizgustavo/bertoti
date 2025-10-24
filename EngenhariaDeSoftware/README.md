@@ -27,36 +27,38 @@ Portabilidade e desempenho também costumam gerar um trade-off. Quando buscamos 
 
 ## 4° ATIVIDADE - Classes UML
 
-<img src="/https://github.com/oliveiraluizgustavo/bertoti/blob/main/EngenhariaDeSoftware/Docs/Assets/Diagrama_UML.png">
+<td><img src="https://github.com/oliveiraluizgustavo/bertoti/blob/main/EngenhariaDeSoftware/Docs/Assets/Diagrama_UML.png"></td>
 
 ## 5° ATIVIDADE - Java
 
 ### Estrutura do projeto
-<img src="/EngenhariaDeSoftware/assets/EstruturaDasClasses.png">
+
+<td><img src="https://github.com/oliveiraluizgustavo/bertoti/blob/main/EngenhariaDeSoftware/Docs/Assets/EstruturaDasClasses.png"></td>
 
 ### Classe Hospital
-<img src="/EngenhariaDeSoftware/assets/ClasseHospital.png">
+
+<td><img src="https://github.com/oliveiraluizgustavo/bertoti/blob/main/EngenhariaDeSoftware/Docs/Assets/ClasseHospital.png"></td>
 
 ### Classe Paciente
-<img src="/EngenhariaDeSoftware/assets/ClassePaciente.png">
+
+<td><img src="https://github.com/oliveiraluizgustavo/bertoti/blob/main/EngenhariaDeSoftware/Docs/Assets/ClassePaciente.png"></td>
 
 ### Classe Medico
-<img src="/EngenhariaDeSoftware/assets/ClasseMedico.png">
+
+<td><img src="https://github.com/oliveiraluizgustavo/bertoti/blob/main/EngenhariaDeSoftware/Docs/Assets/ClasseMedico.png"></td>
 
 ## 6° ATIVIDADE - Testes automatizados
 
-<img src="/EngenhariaDeSoftware/assets/ClasseTeste01.png">
-<img src="/EngenhariaDeSoftware/assets/ClasseTeste02.png">
-<img src="/EngenhariaDeSoftware/assets/ClasseTeste03.png">
+<td><img src="https://github.com/oliveiraluizgustavo/bertoti/blob/main/EngenhariaDeSoftware/Docs/Assets/ClasseTeste01.png"></td>
+<td><img src="https://github.com/oliveiraluizgustavo/bertoti/blob/main/EngenhariaDeSoftware/Docs/Assets/ClasseTeste02.png"></td>
+<td><img src="https://github.com/oliveiraluizgustavo/bertoti/blob/main/EngenhariaDeSoftware/Docs/Assets/ClasseTeste03.png"></td>
 
 ## 7° ATIVIDADE - Java -> SQLite
 
-<img src="/EngenhariaDeSoftware/assets/ClasseDeConexaoComBancoDeDados01.png">
-<img src="/EngenhariaDeSoftware/assets/ClasseDeConexaoComBancoDeDados02.png">
-<img src="/EngenhariaDeSoftware/assets/ClasseDeConexaoComBancoDeDados03.png">
-
+<td><img src="https://github.com/oliveiraluizgustavo/bertoti/blob/main/EngenhariaDeSoftware/Docs/Assets/ClasseDeConexaoComBancoDeDados01.png"></td>
+<td><img src="https://github.com/oliveiraluizgustavo/bertoti/blob/main/EngenhariaDeSoftware/Docs/Assets/ClasseDeConexaoComBancoDeDados02.png"></td>
+<td><img src="https://github.com/oliveiraluizgustavo/bertoti/blob/main/EngenhariaDeSoftware/Docs/Assets/ClasseDeConexaoComBancoDeDados03.png"></td>
 
 ## 8° ATIVIDADE - Usar ollama4j
 
-<img src="/EngenhariaDeSoftware/assets/Atividade08Ollama.png">
-
+<td><img src="https://github.com/oliveiraluizgustavo/bertoti/blob/main/EngenhariaDeSoftware/Docs/Assets/Atividade08Ollama.png"></td>

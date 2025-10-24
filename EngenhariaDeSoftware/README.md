@@ -37,7 +37,8 @@ Portabilidade e desempenho também costumam gerar um trade-off. Quando buscamos 
 
 ### Classe Hospital
 
-<td><img src="https://github.com/oliveiraluizgustavo/bertoti/blob/main/EngenhariaDeSoftware/Docs/Assets/ClasseHospital.png"></td>
+<img width="489" height="414" alt="ClasseHospital" src="https://github.com/user-attachments/assets/758d9e2d-63cd-4dc8-ae0d-db4ec0af53f6" />
+
 
 ### Classe Paciente
 
@@ -61,4 +62,5 @@ Portabilidade e desempenho também costumam gerar um trade-off. Quando buscamos 
 
 ## 8° ATIVIDADE - Usar ollama4j
 
-<td><img src="https://github.com/oliveiraluizgustavo/bertoti/blob/main/EngenhariaDeSoftware/Docs/Assets/Atividade08Ollama.png"></td>
+<img width="705" height="533" alt="Atividade08Ollama" src="https://github.com/user-attachments/assets/c09c0c6f-f9a6-4594-bfd1-6b2bd39e767c" />
+

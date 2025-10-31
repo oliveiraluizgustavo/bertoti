@@ -8,15 +8,20 @@ O texto mostra bem a diferença entre programar e realmente fazer engenharia de 
 
 ## 2° ATIVIDADE -  Texto: Software engineering at google trecho 2
 
-### . Escala - 
-### . Tempo -
-### . Tradeoffs - 
+### . Escala
+Este princípio trata da evolução do software ao longo de seu ciclo de vida. A engenharia de software é vista como "programação integrada ao longo do tempo", focando em criar um código sustentável. O desafio é garantir que o software possa se adaptar a mudanças inevitáveis, como novos requisitos, atualizações ou correções, sem se tornar obsoleto ou impossível de manter.
 
+### . Tempo  
+Este princípio foca em como a organização e seus processos se adaptam ao crescimento. Não se refere apenas a mais usuários, mas ao aumento da complexidade e do tamanho da própria equipe de engenharia. As práticas e ferramentas precisam evoluir para que a organização consiga gerenciar sua base de código de forma eficaz à medida que a empresa cresça.
+
+### . Tradeoffs 
+Este princípio aborda o processo de tomada de decisão, que deve considerar as lições de Tempo e Escala. É impossível otimizar tudo; é preciso fazer escolhas conscientes. Por exemplo, uma solução rápida hoje (Tempo) pode não funcionar bem quando a equipe crescer (Escala). Trata-se de entender e equilibrar os custos e benefícios de cada decisão.
 
 ## 3° ATIVIDADE -  Exemplos de tradeoffs:
 
 ### Segurança vs. Estabilidade
 
+Segurança e estabilidade são dois requisitos não funcionais que muitas vezes entram em conflito. Quando buscamos que um sistema seja altamente seguro, normalmente precisamos aplicar atualizações e patches constantes, implementar regras de acesso rigorosas e adicionar camadas de verificação, o que pode introduzir novos bugs ou conflitos que afetam o funcionamento. Por outro lado, manter o sistema estável, muitas vezes evitando mudanças bruscas para garantir a confiabilidade, facilita a operação previsível e contínua, mas pode limitar a proteção contra ameaças recentes, deixando-o vulnerável. Então, o trade-off está em encontrar um equilíbrio, implementando as atualizações de segurança necessárias, mas com um processo de teste e validação que garanta que a estabilidade do sistema não seja comprometida.
 
 
 ### Escalabilidade vs. Simplicidade

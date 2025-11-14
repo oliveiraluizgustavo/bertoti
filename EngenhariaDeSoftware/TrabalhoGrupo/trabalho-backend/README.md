@@ -1,66 +1,49 @@
-# trabalho-backend
 
-This project uses Quarkus, the Supersonic Subatomic Java Framework.
+Trabalho Backend
 
-If you want to learn more about Quarkus, please visit its website: <https://quarkus.io/>.
+Este projeto usa Quarkus, o Framework Java Supersônico Subatômico. Se você quiser aprender mais sobre o Quarkus, por favor, visite seu site: https://quarkus.io/.
 
-## Running the application in dev mode
+Rodando a aplicação em modo de desenvolvimento
+Você pode rodar sua aplicação em modo de desenvolvimento (dev mode), que habilita a codificação ao vivo (live coding), usando:
 
-You can run your application in dev mode that enables live coding using:
+Bash
 
-```shell script
 ./mvnw quarkus:dev
-```
+NOTA: O Quarkus agora vem com uma UI de Desenvolvimento (Dev UI), que está disponível apenas no modo de desenvolvimento em http://localhost:8080/q/dev/.
 
-> **_NOTE:_**  Quarkus now ships with a Dev UI, which is available in dev mode only at <http://localhost:8080/q/dev/>.
+Empacotando e rodando a aplicação
+A aplicação pode ser empacotada usando:
 
-## Packaging and running the application
+Bash
 
-The application can be packaged using:
-
-```shell script
 ./mvnw package
-```
+Isso produz o arquivo quarkus-run.jar no diretório target/quarkus-app/. Esteja ciente de que não é um über-jar (jar único), pois as dependências são copiadas para o diretório target/quarkus-app/lib/. A aplicação agora pode ser executada usando java -jar target/quarkus-app/quarkus-run.jar.
 
-It produces the `quarkus-run.jar` file in the `target/quarkus-app/` directory.
-Be aware that it’s not an _über-jar_ as the dependencies are copied into the `target/quarkus-app/lib/` directory.
+Se você quiser construir um über-jar, execute o seguinte comando:
 
-The application is now runnable using `java -jar target/quarkus-app/quarkus-run.jar`.
+Bash
 
-If you want to build an _über-jar_, execute the following command:
-
-```shell script
 ./mvnw package -Dquarkus.package.jar.type=uber-jar
-```
+A aplicação, empacotada como um über-jar, agora pode ser executada usando java -jar target/*-runner.jar.
 
-The application, packaged as an _über-jar_, is now runnable using `java -jar target/*-runner.jar`.
+Criando um executável nativo
+Você pode criar um executável nativo usando:
 
-## Creating a native executable
+Bash
 
-You can create a native executable using:
-
-```shell script
 ./mvnw package -Dnative
-```
+Ou, se você não tiver o GraalVM instalado, pode rodar a compilação do executável nativo em um contêiner usando:
 
-Or, if you don't have GraalVM installed, you can run the native executable build in a container using:
+Bash
 
-```shell script
 ./mvnw package -Dnative -Dquarkus.native.container-build=true
-```
+Você pode então executar seu executável nativo com: ./target/trabalho-backend-1.0.0-SNAPSHOT-runner
 
-You can then execute your native executable with: `./target/trabalho-backend-1.0.0-SNAPSHOT-runner`
+Se você quiser aprender mais sobre a construção de executáveis nativos, por favor, consulte https://quarkus.io/guides/maven-tooling.
 
-If you want to learn more about building native executables, please consult <https://quarkus.io/guides/maven-tooling>.
+Guias Relacionados
+Driver JDBC - PostgreSQL (guia): Conecte-se ao banco de dados PostgreSQL via JDBC.
 
-## Related Guides
+RESTEasy JAX-RS: Inicie facilmente seus Serviços Web RESTful.
 
-- JDBC Driver - PostgreSQL ([guide](https://quarkus.io/guides/datasource)): Connect to the PostgreSQL database via JDBC
-
-## Provided Code
-
-### RESTEasy JAX-RS
-
-Easily start your RESTful Web Services
-
-[Related guide section...](https://quarkus.io/guides/getting-started#the-jax-rs-resources)
+Seção do guia relacionada...

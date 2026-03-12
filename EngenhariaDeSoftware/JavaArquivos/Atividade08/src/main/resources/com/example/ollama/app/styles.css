@@ -1,0 +1,45 @@
+/* baby-blue theme */
+.root {
+    -fx-font-family: 'Segoe UI', 'Arial';
+    -fx-background-color: linear-gradient(#e6f7ff, #f9feff);
+}
+
+.tool-bar {
+    -fx-background-color: transparent;
+}
+
+.list-cell {
+    -fx-padding: 6 10 6 10;
+}
+
+.bubble-user {
+    -fx-background-color: linear-gradient(#bee8ff, #a7dbff);
+    -fx-background-radius: 12;
+    -fx-padding: 8;
+    -fx-border-radius: 12;
+    -fx-border-color: transparent;
+    -fx-font-size: 13px;
+}
+
+.bubble-assistant {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 12;
+    -fx-padding: 8;
+    -fx-border-radius: 12;
+    -fx-border-color: #e0e0e0;
+    -fx-font-size: 13px;
+}
+
+.bubble-system {
+    -fx-background-color: transparent;
+    -fx-font-style: italic;
+    -fx-text-fill: #555;
+}
+
+.text-area {
+    -fx-control-inner-background: transparent;
+}
+
+.button {
+    -fx-background-radius: 8;
+}

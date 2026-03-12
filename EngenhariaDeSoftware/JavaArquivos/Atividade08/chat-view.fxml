@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.ollama.app.ChatController">
+
+    <top>
+        <HBox spacing="10" alignment="CENTER_LEFT">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10" />
+            </padding>
+
+            <Label text="Modelo ativo:" style="-fx-font-weight: bold;" />
+            <ComboBox promptText="Selecione um modelo (decorativo)" prefWidth="180">
+                <items>
+                    <FXCollections fx:factory="observableArrayList">
+                        <String fx:value="qwen3:1.7b" />
+                        <String fx:value="qwen3:4b" />
+                    </FXCollections>
+                </items>
+            </ComboBox>
+        </HBox>
+    </top>
+
+    <center>
+        <ListView fx:id="listView" prefHeight="400.0" prefWidth="600.0" />
+    </center>
+
+    <bottom>
+        <VBox spacing="5">
+            <HBox spacing="10">
+                <padding>
+                    <Insets top="10" right="10" bottom="5" left="10" />
+                </padding>
+                <TextField fx:id="txtQuestion" HBox.hgrow="ALWAYS" promptText="Digite sua pergunta..." />
+                <Button fx:id="btnEnviar" text="Enviar" onAction="#onEnviar" />
+            </HBox>
+
+            <Label text="🟢 Conectado a: localhost:11434"
+                   style="-fx-font-style: italic; -fx-text-fill: #3b83f6; -fx-font-size: 11px; -fx-alignment: center;"
+                   alignment="CENTER" />
+        </VBox>
+    </bottom>
+
+</BorderPane>
+

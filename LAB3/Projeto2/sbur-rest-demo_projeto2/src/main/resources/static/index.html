@@ -1,83 +1,293 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Gerenciador de Cafés</title>
+    <title>Meus Cafés</title>
     <meta charset="UTF-8">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>☕</text></svg>">
     <style>
-        /* Configurações Gerais */
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f5f5f5; /* Fundo cinza claro */
-            color: #4e342e; /* Marrom escuro */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+
+        /* SPLASH */
+        .splash {
+            min-height: 100vh;
+            position: relative;
+            cursor: pointer;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .splash-right {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: #f5ede4;
+            z-index: 0;
+            transition: transform 0.9s cubic-bezier(0.77,0,0.175,1);
+        }
+        .splash-left {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: #b07050;
+            clip-path: polygon(0 0, 55% 0, 38% 100%, 0 100%);
+            z-index: 1;
+            transition: transform 0.9s cubic-bezier(0.77,0,0.175,1);
+        }
+        .splash.opening .splash-left { transform: translateX(-100%); }
+        .splash.opening .splash-right { transform: translateX(100%); }
+        .splash.opening .cup-center { opacity: 0; transform: scale(0.85); }
+
+        .cup-center {
+            position: relative;
+            z-index: 2;
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding-top: 50px;
+            gap: 12px;
+            left: -3%;
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+        .cup-hint {
+            font-size: 11px;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #6f4e37;
+            background: rgba(245,237,228,0.85);
+            padding: 4px 12px;
+            border-radius: 20px;
+        }
+        .cup-svg { width: 200px; height: 200px; }
+        .splash-brand {
+            font-size: 13px;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: #f5ede4;
+            background: rgba(59,31,14,0.5);
+            padding: 5px 16px;
+            border-radius: 20px;
         }
 
-        h2 { border-bottom: 3px solid #6f4e37; padding-bottom: 10px; }
+        /* MAIN */
+        .main-page {
+            display: none;
+            min-height: 100vh;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        .main-page.visible { opacity: 1; }
+        .layout { display: flex; min-height: 100vh; }
 
-        /* Estilo da área de Digitação (Create/Update) */
-        .painel-controle {
-            background: white;
-            padding: 20px;
+        /* SIDEBAR */
+        .sidebar {
+            width: 210px;
+            background: #3b1f0e;
+            padding: 1.5rem 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            flex-shrink: 0;
+        }
+        .sidebar-logo {
+            color: #e8d5c0;
+            font-size: 15px;
+            font-weight: 500;
+            margin-bottom: 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .sidebar-logo svg { width: 20px; height: 20px; fill: #c8a882; }
+        .menu-btn {
+            background: transparent;
+            border: none;
+            color: #d4b898;
+            padding: 10px 12px;
             border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            margin-bottom: 30px;
+            text-align: left;
+            font-size: 14px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: background 0.15s, color 0.15s;
+            width: 100%;
         }
+        .menu-btn:hover { background: rgba(255,255,255,0.08); color: #f0dfc8; }
+        .menu-btn.active { background: #f5ede4; color: #3b1f0e; font-weight: 500; }
+        .menu-btn svg { width: 16px; height: 16px; fill: currentColor; flex-shrink: 0; }
 
-        input {
-            padding: 10px;
-            border: 1px solid #d7ccc8;
-            border-radius: 4px;
-            margin-right: 5px;
+        /* CONTENT */
+        .content { flex: 1; background: #faf6f2; padding: 2rem 1.5rem; }
+        .content-title { font-size: 20px; font-weight: 500; color: #3b1f0e; margin-bottom: 4px; }
+        .content-sub { font-size: 13px; color: #8a6a55; margin-bottom: 1.5rem; }
+
+        /* FORM */
+        .form-panel {
+            background: white;
+            border: 0.5px solid #e0d4c8;
+            border-radius: 12px;
+            padding: 1.25rem;
+            margin-bottom: 1.5rem;
+            max-width: 480px;
+        }
+        .form-panel input {
+            width: 100%;
+            border: 0.5px solid #d0c0b0;
+            border-radius: 8px;
+            padding: 9px 12px;
+            font-size: 14px;
+            color: #3b1f0e;
+            background: #faf6f2;
+            margin-bottom: 10px;
             outline: none;
         }
-
-        /* Estilo dos Botões */
-        button {
-            padding: 10px 15px;
-            background-color: #6f4e37; /* Cor Café */
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: 0.3s;
+        .form-panel input:focus { border-color: #6f4e37; }
+        .btn-primary {
+            background: #6f4e37; color: white;
+            border: none; border-radius: 8px;
+            padding: 9px 20px; font-size: 14px;
+            font-weight: 500; cursor: pointer; width: 100%;
         }
+        .btn-primary:hover { background: #3b1f0e; }
 
-        button:hover { background-color: #4b3621; }
-
-        .btn-excluir { background-color: #d32f2f; margin-left: 5px; }
-        .btn-excluir:hover { background-color: #b71c1c; }
-
-        /* Estilo da Lista (Read/Delete) */
-        ul { list-style: none; padding: 0; width: 400px; }
-
-        li {
+        /* CARDS */
+        .cafe-grid { display: flex; flex-direction: column; gap: 10px; max-width: 560px; }
+        .cafe-card {
             background: white;
-            margin-bottom: 10px;
-            padding: 15px;
-            border-radius: 6px;
+            border: 0.5px solid #e0d4c8;
+            border-radius: 12px;
+            padding: 14px 16px;
             display: flex;
-            justify-content: space-between; /* Alinha texto na esquerda e botões na direita */
             align-items: center;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            gap: 12px;
         }
-    </style>
+        .cafe-num {
+            width: 32px; height: 32px;
+            background: #f5ede4; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 12px; font-weight: 500; color: #6f4e37; flex-shrink: 0;
+        }
+        .cafe-name { flex: 1; font-size: 15px; color: #3b1f0e; font-weight: 500; }
+        .cafe-actions { display: flex; gap: 6px; }
+        .btn-edit-sm {
+            background: transparent; border: 0.5px solid #d0c0b0;
+            border-radius: 6px; padding: 5px 12px; font-size: 12px;
+            color: #6f4e37; cursor: pointer;
+        }
+        .btn-edit-sm:hover { background: #f5ede4; }
+        .btn-del-sm {
+            background: transparent; border: 0.5px solid #f0c0b0;
+            border-radius: 6px; padding: 5px 12px; font-size: 12px;
+            color: #c0392b; cursor: pointer;
+        }
+        .btn-del-sm:hover { background: #fdf0ee; }
 
+        .panel { display: none; }
+        .panel.active { display: block; }
+
+        .toast-bar {
+            background: #3b1f0e; color: #f5ede4;
+            padding: 8px 16px; border-radius: 8px;
+            font-size: 13px; text-align: center;
+            margin-bottom: 16px; max-width: 560px;
+            opacity: 0; transition: opacity 0.3s;
+        }
+        .toast-bar.show { opacity: 1; }
+    </style>
 </head>
 <body>
-<h2>☕ Meus Cafés</h2>
 
-<div class="painel-controle">
-    <input type="text" id="idCafe" placeholder="ID (ex: 7)">
-    <input type="text" id="nomeCafe" placeholder="Nome do Café">
-    <button id="btnSalvar" onclick="salvarNoBanco()">Salvar Café</button>
+<!-- SPLASH -->
+<div class="splash" id="splash" onclick="abrirApp()">
+    <div class="splash-right"></div>
+    <div class="splash-left"></div>
+    <div class="cup-center">
+        <div class="cup-hint">toque para entrar</div>
+        <svg class="cup-svg" viewBox="0 0 130 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="65" cy="44" rx="34" ry="9" fill="#c8a882"/>
+            <path d="M31 44 Q33 92 65 97 Q97 92 99 44 Z" fill="#6f4e37"/>
+            <ellipse cx="65" cy="44" rx="34" ry="9" fill="#a07858"/>
+            <ellipse cx="65" cy="44" rx="28" ry="7" fill="#3b1f0e"/>
+            <path d="M99 58 Q113 58 113 68 Q113 78 99 78" stroke="#6f4e37" stroke-width="6" fill="none" stroke-linecap="round"/>
+            <rect x="33" y="99" width="64" height="7" rx="3.5" fill="#4a2810"/>
+            <rect x="24" y="106" width="82" height="5" rx="2.5" fill="#3b1f0e"/>
+            <path d="M52 26 Q56 16 52 8" stroke="#d4b898" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+            <path d="M65 23 Q69 13 65 5" stroke="#d4b898" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+            <path d="M78 26 Q82 16 78 8" stroke="#d4b898" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+        </svg>
+        <div class="splash-brand">meus cafés</div>
+    </div>
 </div>
 
-<ul id="listaDeCafes"></ul>
+<!-- MAIN -->
+<div class="main-page" id="mainPage">
+    <div class="layout">
+        <div class="sidebar">
+            <div class="sidebar-logo">
+                <svg viewBox="0 0 24 24"><path d="M2 21h18v-2H2v2zm5-4h8c2.2 0 4-1.8 4-4V5H3v8c0 2.2 1.8 4 4 4zm11-9h2c1.1 0 2 .9 2 2v1c0 1.1-.9 2-2 2h-2V6z"/></svg>
+                Meus Cafés
+            </div>
+            <button class="menu-btn active" onclick="mostrarPainel('lista', this)">
+                <svg viewBox="0 0 24 24"><path d="M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zM7 7v2h14V7H7z"/></svg>
+                Ver cafés
+            </button>
+            <button class="menu-btn" onclick="mostrarPainel('adicionar', this)">
+                <svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+                Adicionar café
+            </button>
+            <button class="menu-btn" onclick="mostrarPainel('editar', this)">
+                <svg viewBox="0 0 24 24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04a1 1 0 000-1.41l-2.34-2.34a1 1 0 00-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
+                Editar café
+            </button>
+            <button class="menu-btn" onclick="mostrarPainel('remover', this)">
+                <svg viewBox="0 0 24 24"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg>
+                Remover café
+            </button>
+        </div>
+
+        <div class="content">
+            <div id="toast" class="toast-bar"></div>
+
+            <!-- VER CAFÉS -->
+            <div class="panel active" id="painel-lista">
+                <p class="content-title">Cardápio de cafés</p>
+                <p class="content-sub" id="sub-count">Carregando...</p>
+                <div class="cafe-grid" id="lista-cafes"></div>
+            </div>
+
+            <!-- ADICIONAR -->
+            <div class="panel" id="painel-adicionar">
+                <p class="content-title">Adicionar novo café</p>
+                <p class="content-sub">Preencha o nome do novo café</p>
+                <div class="form-panel">
+                    <input type="text" id="add-nome" placeholder="Nome do café (ex: Café Irlandês)" />
+                    <button class="btn-primary" onclick="adicionarCafe()">Salvar café</button>
+                </div>
+            </div>
+
+            <!-- EDITAR -->
+            <div class="panel" id="painel-editar">
+                <p class="content-title">Editar café</p>
+                <p class="content-sub">Selecione um café para editar</p>
+                <div class="cafe-grid" id="lista-editar"></div>
+                <div class="form-panel" id="form-editar" style="display:none; margin-top:1rem;">
+                    <input type="text" id="edit-nome" placeholder="Novo nome do café" />
+                    <button class="btn-primary" onclick="salvarEdicao()">Salvar alteração</button>
+                </div>
+            </div>
+
+            <!-- REMOVER -->
+            <div class="panel" id="painel-remover">
+                <p class="content-title">Remover café</p>
+                <p class="content-sub">Clique em remover para excluir um café</p>
+                <div class="cafe-grid" id="lista-remover"></div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <script src="script.js"></script>
 </body>

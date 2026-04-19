@@ -1,67 +1,125 @@
 const URL = "http://localhost:8080/coffees";
+let editandoId = null;
 
-// LISTAR (READ): Busca no Spring Boot e desenha na tela
+function abrirApp() {
+    const splash = document.getElementById('splash');
+    const main = document.getElementById('mainPage');
+    splash.classList.add('opening');
+    setTimeout(() => {
+        splash.style.display = 'none';
+        main.style.display = 'block';
+        listarCafes();
+        renderEditar();
+        renderRemover();
+        setTimeout(() => main.classList.add('visible'), 30);
+    }, 850);
+}
+
+function mostrarPainel(nome, btn) {
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.menu-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('painel-' + nome).classList.add('active');
+    btn.classList.add('active');
+    if (nome === 'editar') renderEditar();
+    if (nome === 'remover') renderRemover();
+}
+
+function toast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 2500);
+}
+
+// ── LISTAR ──────────────────────────────────────────
 async function listarCafes() {
     try {
-        const resposta = await fetch(URL);
-        const cafes = await resposta.json();
-        const lista = document.getElementById('listaDeCafes');
-        lista.innerHTML = ""; // Limpa a lista antes de carregar
-
-        cafes.forEach(cafe => {
-            lista.innerHTML += `
-                <li>
-                    <span><strong>${cafe.id}</strong> - ${cafe.name}</span>
-                    <div>
-                        <button onclick="prepararEdicao('${cafe.id}', '${cafe.name}')">Editar</button>
-                        <button class="btn-excluir" onclick="deletarCafe('${cafe.id}')">Excluir</button>
-                    </div>
-                </li>`;
-        });
-    } catch (erro) {
-        console.error("Erro ao listar:", erro);
+        const res = await fetch(URL);
+        const cafes = await res.json();
+        document.getElementById('sub-count').textContent = cafes.length + ' cafés disponíveis';
+        document.getElementById('lista-cafes').innerHTML = cafes.map(c => `
+      <div class="cafe-card">
+        <div class="cafe-num">${c.id}</div>
+        <span class="cafe-name">${c.name}</span>
+      </div>`).join('');
+    } catch (e) {
+        console.error("Erro ao listar:", e);
     }
 }
 
-// SALVAR (CREATE / UPDATE): Envia para o MySQL via Spring Boot
-async function salvarNoBanco() {
-    const id = document.getElementById('idCafe').value;
-    const name = document.getElementById('nomeCafe').value;
-
-    if (!id || !name) {
-        alert("Preencha todos os campos!");
-        return;
-    }
-
+// ── ADICIONAR ───────────────────────────────────────
+async function adicionarCafe() {
+    const name = document.getElementById('add-nome').value.trim();
+    if (!name) { alert("Preencha o nome do café!"); return; }
     await fetch(URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ id, name })
+        body: JSON.stringify({ name })
     });
-
-    // Limpa os campos após salvar
-    document.getElementById('idCafe').value = "";
-    document.getElementById('nomeCafe').value = "";
-    document.getElementById('idCafe').disabled = false; // Reabilita o ID
-
-    listarCafes(); // Atualiza a lista na hora
+    document.getElementById('add-nome').value = '';
+    await listarCafes();
+    toast('Café adicionado com sucesso!');
 }
 
-// PREPARAR EDIÇÃO: Joga os dados da lista para as caixas de texto
-function prepararEdicao(id, name) {
-    document.getElementById('idCafe').value = id;
-    document.getElementById('nomeCafe').value = name;
-    document.getElementById('idCafe').disabled = true; // Não deixa mudar o ID na edição
-    document.getElementById('nomeCafe').focus(); // Coloca o cursor no nome
+// ── EDITAR ──────────────────────────────────────────
+async function renderEditar() {
+    try {
+        const res = await fetch(URL);
+        const cafes = await res.json();
+        document.getElementById('form-editar').style.display = 'none';
+        document.getElementById('lista-editar').innerHTML = cafes.map(c => `
+      <div class="cafe-card">
+        <div class="cafe-num">${c.id}</div>
+        <span class="cafe-name">${c.name}</span>
+        <div class="cafe-actions">
+          <button class="btn-edit-sm" onclick="selecionarEditar(${c.id}, '${c.name}')">Editar</button>
+        </div>
+      </div>`).join('');
+    } catch (e) { console.error("Erro ao carregar editar:", e); }
 }
 
-// EXCLUIR (DELETE): Remove o café pelo ID
-async function deletarCafe(id) {
-    if (confirm("Tem certeza que deseja excluir o café " + id + "?")) {
-        await fetch(`${URL}/${id}`, { method: 'DELETE' });
-        listarCafes();
-    }
+function selecionarEditar(id, name) {
+    editandoId = id;
+    document.getElementById('edit-nome').value = name;
+    document.getElementById('form-editar').style.display = 'block';
+    document.getElementById('edit-nome').focus();
 }
 
-// Inicia a lista assim que a página abre
-listarCafes();
+async function salvarEdicao() {
+    const name = document.getElementById('edit-nome').value.trim();
+    if (!name) { alert("Preencha o nome!"); return; }
+    await fetch(`${URL}/${editandoId}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id: editandoId, name })
+    });
+    editandoId = null;
+    document.getElementById('form-editar').style.display = 'none';
+    await listarCafes();
+    await renderEditar();
+    toast('Café atualizado com sucesso!');
+}
+
+// ── REMOVER ─────────────────────────────────────────
+async function renderRemover() {
+    try {
+        const res = await fetch(URL);
+        const cafes = await res.json();
+        document.getElementById('lista-remover').innerHTML = cafes.map(c => `
+      <div class="cafe-card">
+        <div class="cafe-num">${c.id}</div>
+        <span class="cafe-name">${c.name}</span>
+        <div class="cafe-actions">
+          <button class="btn-del-sm" onclick="removerCafe(${c.id}, '${c.name}')">Remover</button>
+        </div>
+      </div>`).join('');
+    } catch (e) { console.error("Erro ao carregar remover:", e); }
+}
+
+async function removerCafe(id, name) {
+    if (!confirm(`Deseja remover "${name}"?`)) return;
+    await fetch(`${URL}/${id}`, { method: 'DELETE' });
+    await listarCafes();
+    await renderRemover();
+    toast('Café removido com sucesso!');
+}

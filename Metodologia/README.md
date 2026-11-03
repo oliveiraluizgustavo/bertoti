@@ -27,11 +27,15 @@ Ao longo do curso, percebi que tenho aptidão para a área de UI/UX, que tem cha
 
 ## API Projetos
 
-### Repositório: [FLOWTRACK](https://github.com/LizardsDBA/API-2026-3)
-
 ### 3º Semestre - 01/2026
 
+<div align="center">
+<img width="300" alt="Logo do IPEM" src="https://github.com/user-attachments/assets/cda133b9-37e6-42f0-9451-f1e7a9636539" />
+</div>
+
 ### Empresa: [IPEM - Instituto de Pesos e Medidas](https://www.ipem.sp.gov.br/ipem)
+
+### Repositório: [FLOWTRACK](https://github.com/LizardsDBA/API-2026-3)
 
 ### Desafio:
 O projeto propõe o desenvolvimento de uma aplicação web para gerenciar e analisar os abastecimentos da frota do IPEM, Regional de São José dos Campos. Hoje, o controle é feito em pranchetas de papel deixadas dentro das viaturas, onde os técnicos anotam à mão a quilometragem, os litros, o valor pago e o número da nota fiscal. Esse modelo torna trabalhosa a consolidação mensal, impede comparar o desempenho entre os veículos e dificulta o acompanhamento do consumo médio.
@@ -103,7 +107,21 @@ A solução proposta leva esse processo para o ambiente digital. O sistema permi
 
 Este projeto contribuiu para o meu desenvolvimento técnico e para a minha atuação em equipe. No back-end, aprofundei meus conhecimentos em Java e Spring Boot ao implementar módulos completos, como manutenção e notificações, com regras de negócio próprias, a exemplo dos alertas preventivos por quilometragem. No front-end, evoluí ao criar telas, modais e validações integradas à API. Em banco de dados, passei a enxergar o schema como parte viva do sistema: mantive o modelo sincronizado com as mudanças do time e aprendi a diagnosticar problemas como chaves estrangeiras e colunas ausentes. Também ganhei mais domínio do Git e do GitHub, lidando com conflitos de merge e organizando o trabalho em tarefas.
 
-No aspecto pessoal e profissional, o desafio exigiu comunicação constante e alinhamentos frequentes com a equipe, principalmente para definir regras de negócio antes de implementá-las e para respeitar a divisão de escopo entre tarefas. Isso fortaleceu minha comunicação e a forma como analiso um problema antes de colocá-lo em prática.
+No aspecto pessoal e profissional, o desafio exigiu comunicação constante e alinhamentos frequentes com a equipe, principalmente para definir regras de negócio antes de implementá-las e para respeitar a divisão de escopo entre tarefas. Isso fortaleceu minha comunicação e a forma como analiso um problema antes de colocá-lo em prática. 
+
+### Soft skills
+
+-  Comunicação
+-  Trabalho em equipe
+-  Pensamento analítico
+-  Resolução de problemas
+
+### Hard Skills
+
+- **Java / Spring Boot:** sei fazer com ajuda
+- **MySQL:** sei fazer com autonomia
+- **JavaScript, HTML e CSS:** sei fazer com ajuda
+- **Git / GitHub:** sei fazer com autonomia
 
 ### Tecnologias Utilizadas
 

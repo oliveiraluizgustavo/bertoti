@@ -3,7 +3,7 @@ package com.example.ollama.app;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class Message {
+public class  Message {
     public enum Role { SYSTEM, USER, ASSISTANT }
 
     private final Role role;
